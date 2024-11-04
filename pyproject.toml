@@ -67,3 +67,6 @@ max-complexity = 5
 
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
+
+[tool.bandit]
+exclude_dirs = ["tests"]

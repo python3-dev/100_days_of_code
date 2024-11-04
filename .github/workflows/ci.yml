@@ -27,12 +27,20 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install bandit pytest pytest-xdist[psutil] ruff
+          pip install refurb bandit pytest pytest-xdist[psutil] ruff
 
       - name: Run code sanity checks and fix issues.
         run: |
           ruff clean
           ruff check . --fix --config=pyproject.toml --output-format=github
+
+      - name: Run bandit
+        run: |
+          bandit -c pyproject.toml -r .
+
+      - name: Run refurb
+        run: |
+          refurb --enable-all --python-version 3.12 --format github .
 
       - name: Run unit tests
         run: |
