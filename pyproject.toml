@@ -1,0 +1,68 @@
+[tool.poetry]
+name = "100-days-of-code"
+version = "0.1.0"
+description = "The objective of this project is to code everyday, each code independent from each other, solving interesting and small problems."
+authors = ["Pratheesh Prakash <pratheeshraniprakash@gmail.com>"]
+license = "GPL-3.0-or-later"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+coverage = "^7.6.4"
+pytest-cov = "^6.0.0"
+ruff = "^0.7.2"
+bandit = "^1.7.10"
+refurb = "^2.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+fix = true
+target-version = "py312"
+exclude = [".python-version", "README.md", "*.pyc", "*.lock", "*.toml"]
+output-format = "github"
+
+[tool.ruff.lint]
+preview = true
+select = ['ALL']
+extend-select = ["D400"]
+ignore = [
+    "T201",
+    "CPY001",
+    "W191",
+    "E111",
+    "E114",
+    "E117",
+    "D206",
+    "D300",
+    "Q000",
+    "Q001",
+    "Q002",
+    "Q003",
+    "COM812",
+    "COM819",
+    "ISC001",
+    "ISC002",
+    "S101"
+]
+
+[tool.ruff.format]
+preview = true
+
+[tool.ruff.analyze]
+preview = true
+
+[tool.ruff.lint.isort]
+case-sensitive = true
+
+[tool.ruff.lint.mccabe]
+max-complexity = 5
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
