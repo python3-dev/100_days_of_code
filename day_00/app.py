@@ -1,6 +1,10 @@
 """Main application."""
 
 
+MIN_LENGTH: int = 2
+THRESHOLD: int = 5
+
+
 def is_valid(number_: int | str, check_digit: int | str | None = None) -> bool:
     """Check whether number_ is valid.
 
@@ -36,7 +40,7 @@ def is_valid(number_: int | str, check_digit: int | str | None = None) -> bool:
         check_digit = int(check_digit)
         payload = condensed_number
 
-    if len(payload) < 2:
+    if len(payload) < MIN_LENGTH:
         return False
 
     payload_sum: int = get_checksum(payload)
@@ -63,10 +67,10 @@ def get_checksum(payload_: str) -> int:
     for index, digit_ in enumerate(payload_[::-1]):
         digit = int(digit_)
         if index % 2 == 0:
-            if digit < 5:
+            if digit < THRESHOLD:
                 payload_sum += digit * 2
             else:
-                payload_sum += (digit - 5) * 2 + 1
+                payload_sum += (digit - THRESHOLD) * 2 + 1
         else:
             payload_sum += digit
 
